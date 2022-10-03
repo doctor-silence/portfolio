@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <h1>Блог</h1>
+
+    <h2>Сейчас тут {{ blog.count }} поста</h2>
     {% for blogs in blog %}
-    <h2>{{ blogs.title }}</h2>
-    <h5>{{ blogs.date }}</h5>
-    <p>{{ blogs.description }}</p>
+    <a href="{% url 'blog:detail' blogs.id %}"><h2>{{ blogs.title }}</h2></a>
+    <h5>{{ blogs.date|date:'M d Y' }}</h5>
+    <p>{{ blogs.description|safe|truncatechars:100 }}</p>
 
     {% endfor %}
 </head>
